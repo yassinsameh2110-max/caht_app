@@ -1,9 +1,18 @@
+import 'package:caht_app/firebase_options.dart';
+import 'package:caht_app/pages/chatPage.dart';
 import 'package:caht_app/pages/login.dart';
 import 'package:caht_app/pages/signup.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() => runApp(MyApp());
+void main() async{
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+runApp(MyApp());
+} 
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -20,7 +29,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           routes: {
             'login': (context) => const LoginPage(),
-            'signup': (context) => const SignupPage(),
+            'signup': (context) =>  SignupPage(),
+            Chatpage.id:(context)=> const Chatpage(),
           },
           initialRoute: 'login',
           debugShowCheckedModeBanner: false,

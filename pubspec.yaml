@@ -36,6 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_screenutil: ^5.9.3
   firebase_core: ^4.2.1
+  firebase_auth: ^6.1.2
+  modal_progress_hud_nsn: ^0.5.1
+  chat_bubbles: ^1.7.0
+  bubble: ^1.2.1
 
 dev_dependencies:
   flutter_test:
