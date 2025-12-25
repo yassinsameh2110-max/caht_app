@@ -3,12 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
 class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField({this.hint ,this.onChanged});
+  CustomTextFormField({this.hint ,this.onChanged , required this.obscureText, });
   String? hint;
   Function(String)? onChanged;
+   bool obscureText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscureText,
       validator: (value) {
         if(value==null || value.isEmpty){
           return "Field is required";

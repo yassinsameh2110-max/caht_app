@@ -1,6 +1,6 @@
 import 'package:caht_app/const/const.dart';
 import 'package:caht_app/helper/show_snackbar.dart';
-import 'package:caht_app/pages/chatPage.dart';
+
 import 'package:caht_app/widgets/custom_botton.dart';
 import 'package:caht_app/widgets/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -65,6 +65,7 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     SizedBox(height: 25.h),
                     CustomTextFormField(
+                      obscureText: false,
                       hint: "Email",
                       onChanged: (data) {
                         email = data;
@@ -72,6 +73,7 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     SizedBox(height: 10.h),
                     CustomTextFormField(
+                      obscureText: true,
                       hint: "Password",
                       onChanged: (data) {
                         password = data;
@@ -86,8 +88,8 @@ class _SignupPageState extends State<SignupPage> {
                           setState(() {});
                           try {
                             await SignUp();
-
-                         Navigator.pushNamed(context, Chatpage.id);
+                          Navigator.pop(context);
+                        //  Navigator.pushNamed(context, Chatpage.id);
                             
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {

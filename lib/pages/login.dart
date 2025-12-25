@@ -63,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(height: 25.h),
                     CustomTextFormField(
+                      obscureText: false,
                       hint: "Email",
                       onChanged: (data) {
                         email = data;
@@ -70,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(height: 10.h),
                     CustomTextFormField(
+                      obscureText: true,
                       hint: "Password",
                       onChanged: (data) {
                         password = data;
@@ -85,7 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                           try {
                             await LoginUser();
 
-                            Navigator.pushNamed(context, Chatpage.id);
+                            Navigator.pushNamed(context, Chatpage.id , arguments: email);
+                          
                             // Navigator.pop(context);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
@@ -93,8 +96,8 @@ class _LoginPageState extends State<LoginPage> {
                                 context,
                                 "No user found for that email.",
                               );
-                            } else if (e.code == 'email-already-in-use') {
-                              showSnackBar(context, "Email already Exists.");
+                            } else if (e.code == 'wrong-password') {
+                              showSnackBar(context, "In-valid Email or Password .");
                             }
                           }
                           isloading = false;
